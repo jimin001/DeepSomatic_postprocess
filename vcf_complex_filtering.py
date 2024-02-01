@@ -191,6 +191,40 @@ class VCFHandler:
             if sample_count >= 2:
                 yield record
 
+    def filter4(self, records):
+        for record in records:
+            sample_info = [y.values() for y in record.samples.itervalues()]
+            illumina_sample = sample_info[0]
+            hifi_sample = sample_info[1]
+            ont_sample = sample_info[2]
+            ref = record.ref
+            alt = record.alts[0]
+
+            illumina_bool = False
+            hifi_bool = False
+            ont_bool = False
+
+            if None not in illumina_sample:
+                illumina_bool = True
+            if None not in hifi_sample:
+                hifi_bool = True
+            if None not in ont_sample:
+                ont_bool = True
+
+            is_indel = False
+            if len(ref) > 1 or len(alt) > 1:
+                is_indel = True
+
+            if is_indel:
+                if illumina_bool and (hifi_bool or ont_bool):
+                    yield record
+
+            elif not is_indel:
+                bool_list = [illumina_bool, hifi_bool, ont_bool]
+                sample_count = bool_list.count(True)
+
+                if sample_count >= 2:
+                    yield record
 
     def vcf_to_bed(self, records):
         for record in records:
@@ -245,6 +279,7 @@ if __name__ == '__main__':
     filter_criteria1 = vcf_h.filter1(records)
     filter_criteria2 = vcf_h.filter2(records)
     filter_criteria3 = vcf_h.filter3(records)
+    filter_criteria4 = vcf_h.filter4(records)
 
     if filter == 'filter1':
         for record in filter_criteria1:
@@ -258,3 +293,6 @@ if __name__ == '__main__':
         for record in filter_criteria3:
             out_file.write(record)
 
+    elif filter == 'filter4':
+        for record in filter_criteria4:
+            out_file.write(record)
