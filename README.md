@@ -3,6 +3,7 @@ Keep track of scripts used for DeepSomatic analysis
 
 ## coverage_titration.sh
 This script takes in two bam files (`normal.bam`, `tumor.bam`) and downsamples the `tumor.bam` to 30x, 60x, 90x coverage and downsamples the `normal.bam` to 20x, 25x, 30x coverage.
+This script uses samtools with 30 threads.
 
 run locally:
 ```
@@ -19,6 +20,7 @@ Usage: ./coverage_titration.sh \
 ## purity_titration.sh
 This script takes in two bam files  (`normal.bam`, `tumor.bam`) and creates purity titration bams.
 Creates purity titration bams at : 60%, 70%, 80%, 90% tumor purity and 90%, 95% normal purity.
+This script uses samtools with 30 threads.
 
 run locally:
 ```
