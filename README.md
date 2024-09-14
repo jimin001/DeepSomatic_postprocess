@@ -13,4 +13,3 @@ Usage:
 python3 haplotype_somatic_vcf.py -v ${VCF} -bam ${BAM} -o ${OUTPUT} -i ${indel_read_threshold} -u ${unphased_read_threshold}
 ```
 
-```
