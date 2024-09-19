@@ -14,6 +14,7 @@ python3 haplotype_somatic_vcf.py -v ${VCF} -bam ${BAM} -o ${OUTPUT} -i ${indel_r
 ```
 ## deepsomatic_tumor_only_postfiltering_script.sh
 This bash script contains commands to filter non-tumor samples for high confidence somatic variants.
+
 Steps:
 1. subtract germline variants from somatic variant set
 2. filter out variants GQ<20, DP<10
