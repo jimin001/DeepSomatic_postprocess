@@ -23,7 +23,7 @@ Steps:
 5. tag with gnomAD annotations for total population allele frequency
 6. filter for gnomAD annotation AF < 0.001 and AH=1
 
-**need to update paths to 'GRCh38_segdups.bed' and 'haplotypeonly_somatic_vcf.py' in script**
+**need to update paths to `GRCh38_segdups.bed` and `haplotypeonly_somatic_vcf.py` in script**
 
 run locally:
 ```
