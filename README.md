@@ -38,3 +38,29 @@ OUTPUT_DIR=/path/to/output/directory
 
 ./deepsomatic_tumor_only_postfiltering_script.sh -g ${germline_VCF} -s ${somatic_VCF} -b ${BAM} -n ${sample} -o ${OUTPUT_DIR}
 ```
+
+## filter_bam_cal_VAF.sh
+This script calculates variant allele frequencies (VAF) of somatic variants using read depth from bam files.
+This script consists of 4 steps (which step to start on can be chosen using '-w' flag):
+# 1. tag depth information for each variant in VCF using information from tumor and normal bams
+# 2. calculate vaf using depth information
+# 3. use awk to filter out variants that do not pass given vaf threshold
+# 4. use targets file and bcftools filter to filter VCF for only variants in the targets file
+
+run locally:
+```
+Usage:
+sample="sample name"
+TUMOR_BAM="path to tumor bam"
+NORMAL_BAM="path to normal bam"
+vcf="path to VCF"
+filter_vaf="minimum VAF threshold"
+output_prefix="desired output prefix"
+output_directory="path to output directory"
+
+/private/groups/patenlab/jimin/scripts/deepsomatic/filter_bam_cal_VAF.sh -t ${TUMOR_BAM} -n ${NORMAL_BAM} -v ${vcf} -f ${filter_vaf} -s ${sample} -p ${output_prefix} -o ${output_directory} -w 1
+
+```
+
+
+
