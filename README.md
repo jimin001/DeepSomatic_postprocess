@@ -58,7 +58,7 @@ filter_vaf="minimum VAF threshold"
 output_prefix="desired output prefix"
 output_directory="path to output directory"
 
-/private/groups/patenlab/jimin/scripts/deepsomatic/filter_bam_cal_VAF.sh -t ${TUMOR_BAM} -n ${NORMAL_BAM} -v ${vcf} -f ${filter_vaf} -s ${sample} -p ${output_prefix} -o ${output_directory} -w 1
+./filter_bam_cal_VAF.sh -t ${TUMOR_BAM} -n ${NORMAL_BAM} -v ${vcf} -f ${filter_vaf} -s ${sample} -p ${output_prefix} -o ${output_directory} -w 1
 
 ```
 
