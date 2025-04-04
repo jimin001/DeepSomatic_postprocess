@@ -61,6 +61,18 @@ output_directory="path to output directory"
 ./filter_bam_cal_VAF.sh -t ${TUMOR_BAM} -n ${NORMAL_BAM} -v ${vcf} -f ${filter_vaf} -s ${sample} -p ${output_prefix} -o ${output_directory} -w 1
 
 ```
+## bin_vcf_by_VAF.sh
+This script utilizes a bed file tagged with VAF at each position to output VCF files binned by VAF at ranges: "0_0.1 0.1_0.2 0.2_0.3 0.3_0.4 0.4_0.5 0.5_0.6 0.6_0.7 0.7_0.8 0.8_1"
 
+run locally:
+```
+Usage:
+vaf_tagged_bed="path to vaf_tagged_bed" # generate with filter_bam_cal_VAF.sh
+output_prefix="desired output prefix"
+output_directory="path to output directory"
+vcf="path to VCF"
+
+/private/groups/patenlab/jimin/scripts/deepsomatic/bin_vcf_by_VAF.sh -b ${vaf_tagged_bed} -p ${output_prefix} -o ${output_directory} -v ${vcf}
+```
 
 
